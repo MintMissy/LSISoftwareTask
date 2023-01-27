@@ -1,7 +1,7 @@
-<ng-container *ngIf="currencyRates$ | async as currencyRates">
+<ng-container *ngIf="{data: (currencyRates$ | async)} as currencyRates;">
   <p-table
-  #dt
-    [value]="currencyRates[0].rates"
+    #dt
+    [value]="currencyRates.data && currencyRates.data[0] && currencyRates.data.length > 0 ? currencyRates.data[0].rates : []"
     [rows]="10"
     [rowsPerPageOptions]="[10,25,50]"
     [showCurrentPageReport]="true"

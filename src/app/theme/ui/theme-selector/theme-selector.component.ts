@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { getAllThemes, Theme } from '../../model/theme.model';
 import { ThemeService } from '../../service/theme.service';
 
@@ -6,6 +6,7 @@ import { ThemeService } from '../../service/theme.service';
   selector: 'app-theme-selector',
   templateUrl: './theme-selector.component.html',
   styleUrls: ['./theme-selector.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ThemeSelectorComponent implements OnInit {
   themes = getAllThemes();
