@@ -3,22 +3,22 @@ import { getAllThemes, Theme } from '../../model/theme.model';
 import { ThemeService } from '../../service/theme.service';
 
 @Component({
-  selector: 'app-theme-selector',
-  templateUrl: './theme-selector.component.html',
-  styleUrls: ['./theme-selector.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+	selector: 'app-theme-selector',
+	templateUrl: './theme-selector.component.html',
+	styleUrls: ['./theme-selector.component.scss'],
+	changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemeSelectorComponent implements OnInit {
-  themes = getAllThemes();
-  selectedTheme!: Theme;
+	themes = getAllThemes();
+	selectedTheme!: Theme;
 
-  constructor(private themeService: ThemeService) {}
+	constructor(private themeService: ThemeService) {}
 
-  ngOnInit(): void {
-    this.selectedTheme = this.themeService.theme;
-  }
+	ngOnInit(): void {
+		this.selectedTheme = this.themeService.theme;
+	}
 
-  changeTheme(newTheme: Theme) {
-    this.themeService.setTheme(newTheme);
-  }
+	changeTheme(newTheme: Theme) {
+		this.themeService.setTheme(newTheme);
+	}
 }

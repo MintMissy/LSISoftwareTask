@@ -12,22 +12,15 @@ import { CurrencyModule } from './currency/currency.module';
 import { ThemeModule } from './theme/theme.module';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    CurrencyModule,
-    ThemeModule,
-    CoreModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent],
+	declarations: [AppComponent],
+	imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, CurrencyModule, ThemeModule, CoreModule],
+	providers: [
+		{
+			provide: HTTP_INTERCEPTORS,
+			useClass: ErrorInterceptor,
+			multi: true,
+		},
+	],
+	bootstrap: [AppComponent],
 })
 export class AppModule {}

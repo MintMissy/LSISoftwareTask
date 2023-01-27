@@ -7,13 +7,7 @@ import { TableModule } from 'primeng/table';
 import { CurrencyPageComponent } from './feature/currency-page/currency-page.component';
 
 @NgModule({
-  declarations: [CurrencyPageComponent],
-  imports: [
-    CommonModule,
-    TableModule,
-    CalendarModule,
-    HttpClientModule,
-    FormsModule,
-  ],
+	declarations: [CurrencyPageComponent],
+	imports: [CommonModule, TableModule, CalendarModule, HttpClientModule, FormsModule],
 })
 export class CurrencyModule {}

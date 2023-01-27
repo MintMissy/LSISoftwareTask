@@ -6,8 +6,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ThemeSelectorComponent } from './ui/theme-selector/theme-selector.component';
 
 @NgModule({
-  declarations: [ThemeSelectorComponent],
-  imports: [CommonModule, DropdownModule, FormsModule, ButtonModule],
-  exports: [ThemeSelectorComponent]
+	declarations: [ThemeSelectorComponent],
+	imports: [CommonModule, DropdownModule, FormsModule, ButtonModule],
+	exports: [ThemeSelectorComponent],
 })
 export class ThemeModule {}
