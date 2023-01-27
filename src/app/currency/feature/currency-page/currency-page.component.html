@@ -1,6 +1,12 @@
 <ng-container *ngIf="currencyRates$ | async as currencyRates">
   <p-table
-    [value]="currencyRates[0].rates | filterCurrencyData : appliedFilters"
+  #dt
+    [value]="currencyRates[0].rates"
+    [rows]="10"
+    [rowsPerPageOptions]="[10,25,50]"
+    [showCurrentPageReport]="true"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
   >
     <ng-template pTemplate="caption">
       <div class="p-d-flex table-caption">
@@ -8,7 +14,7 @@
           pButton
           type="button"
           class="p-button-outlined"
-          (click)="resetFilters()"
+          (click)="dt.reset()"
         >
           <i class="pi pi-filter filter-icon"></i>
           Clear
@@ -25,38 +31,28 @@
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
+        <th pSortableColumn="code">
+          Symbol waluty
+          <p-sortIcon field="code"> </p-sortIcon>
+        </th>
+        <th pSortableColumn="currency">
+          Waluta
+          <p-sortIcon field="currency"> </p-sortIcon>
+        </th>
+        <th pSortableColumn="mid">
+          Kurs waluty
+          <p-sortIcon field="mid"> </p-sortIcon>
+        </th>
+      </tr>
+      <tr>
         <th>
-          <div class="p-d-flex p-jc-between p-ai-center">
-            <span> Symbol waluty </span>
-            <p-columnFilter
-              type="text"
-              field="name"
-              display="menu"
-              (click)="toggleFilter('code')"
-            ></p-columnFilter>
-          </div>
+          <p-columnFilter type="text" field="code"></p-columnFilter>
         </th>
         <th>
-          <div class="p-d-flex p-jc-between p-ai-center">
-            Waluta
-            <p-columnFilter
-              type="text"
-              field="name"
-              display="menu"
-              (click)="toggleFilter('currency')"
-            ></p-columnFilter>
-          </div>
+          <p-columnFilter type="text" field="currency"></p-columnFilter>
         </th>
         <th>
-          <div class="p-d-flex p-jc-between p-ai-center">
-            Kurs waluty
-            <p-columnFilter
-              type="text"
-              field="name"
-              display="menu"
-              (click)="toggleFilter('mid')"
-            ></p-columnFilter>
-          </div>
+          <p-columnFilter type="numeric" field="mid"></p-columnFilter>
         </th>
       </tr>
     </ng-template>
