@@ -1,10 +1,64 @@
 <ng-container *ngIf="currencyRates$ | async as currencyRates">
-  <p-table [value]="currencyRates[0].rates">
+  <p-table
+    *ngIf="currencyRates !== null"
+    [value]="currencyRates[0].rates | filterCurrencyData : appliedFilters"
+  >
+    <ng-template pTemplate="caption">
+      <div class="p-d-flex table-caption">
+        <button
+          pButton
+          type="button"
+          class="p-button-outlined"
+          (click)="resetFilters()"
+        >
+          <i class="pi pi-filter filter-icon"></i>
+          Clear
+        </button>
+        <div class="p-field p-col-12 p-md-4">
+          <p-calendar
+            [showIcon]="true"
+            inputId="icon"
+            [(ngModel)]="date"
+            (ngModelChange)="onDateUpdate($event)"
+          ></p-calendar>
+        </div>
+      </div>
+    </ng-template>
     <ng-template pTemplate="header">
       <tr>
-        <th>Symbol waluty</th>
-        <th>Waluta</th>
-        <th>Kurs waluty</th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            <span> Symbol waluty </span>
+            <p-columnFilter
+              type="text"
+              field="name"
+              display="menu"
+              (click)="toggleFilter('code')"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Waluta
+            <p-columnFilter
+              type="text"
+              field="name"
+              display="menu"
+              (click)="toggleFilter('currency')"
+            ></p-columnFilter>
+          </div>
+        </th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Kurs waluty
+            <p-columnFilter
+              type="text"
+              field="name"
+              display="menu"
+              (click)="toggleFilter('mid')"
+            ></p-columnFilter>
+          </div>
+        </th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-currencyRate>
